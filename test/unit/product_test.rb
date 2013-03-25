@@ -16,4 +16,25 @@ class ProductTest < ActiveSupport::TestCase
   	refute @p.valid?
   end
 
+  test "must have a name" do
+  	@p.name = ""
+  	refute @p.valid?
+  end
+
+  test "price_in_cents must be an integer" do
+  	@p.price_in_cents = 1.5
+  	refute @p.valid?
+  end
+
+  test "must have price_in_cents" do
+  	@p.price_in_cents = nil
+  	refute @p.valid?
+  end
+
+
+  # Shows that in products.rb you can call a class within a custom symbol because rails is so smart!
+  # test "This is a cheap book" do
+  # 	@p2 = FactoryGirl.create(:cheap_product)
+  # end
+
 end
