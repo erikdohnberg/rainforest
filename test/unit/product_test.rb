@@ -31,6 +31,17 @@ class ProductTest < ActiveSupport::TestCase
   	refute @p.valid?
   end
 
+  test "dollars have two decimals as float" do
+    @p.price_in_dollars = 10
+    refute @p.valid?
+  end
+
+  test "cents to dollars as float" do
+    @p.price_in_dollars 
+  end
+
+  test "price in dollars to cents as integer" do
+  end
 
   # Shows that in products.rb you can call a class within a custom symbol because rails is so smart!
   # test "This is a cheap book" do
