@@ -22,6 +22,11 @@ end
 
 gem 'jquery-rails'
 
+# Everthing inside group will not be available to rest of rails app
+group :test, :development do # Group not necessary, but it's a good habit.
+	gem 'factory_girl_rails'
+end
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

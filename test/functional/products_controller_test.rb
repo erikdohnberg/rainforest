@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
   setup do
-    @product = products(:one)
+    @product = FactoryGirl.create(:product) # Changed from :one because testing would likely break using that. This is more custom.
   end
 
   test "should get index" do

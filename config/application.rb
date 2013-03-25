@@ -11,6 +11,12 @@ end
 
 module Rainforest
   class Application < Rails::Application
+
+    # Auto generate testing scheme and removes fixtures originally created by rails
+    config.generators do |g|
+        g.fixture_replacement :factory_girl
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
