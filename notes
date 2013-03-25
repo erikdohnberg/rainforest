@@ -1,0 +1,44 @@
+Rainforest Notes!
+--- Steps
+1. $ rails generate scaffold Product name:string description:text price_in_cents:integer
+	# this drives _form format
+	# after running, do a git staus to see what files were generated.
+2. Start at Products Controller => clean it up
+		- refactor so that file is not specific to Json or Html (make methods more broad)
+3. rake db:migrate
+4. update testing files (see below)
+		# bundler install + rake tests
+5. Create validations in models
+6. Add tests in test/factories/products.rb + test/unit product_test.rb
+
+
+--- Setting up users 
+- use .create when you want data to be saved in the database, otherwise use .build.
+- 1. set up user tests.
+- 2. rails generate controllers users
+...
+
+--- Testing
+- test/functional: tests the controller
+- test/unit: tests the models
+- run rake tests from terminal
+- Replace fixtures with factory testing:
+	- Delete the fixtures files because the data in there is too rigid and will likely cause test issues later
+	- Also update gemfile (Not gemfile lock! It will be automatically updated by Bundler) "factory_girl_rails"
+	- Do bundle install since Gemfile changed
+	- Create new test/factories/product.rb to replace the fixtures file (less rigid method for testing)
+	- In config/application.rb add config.generator to auto generate testing scheme and remove fixtures originally created by rails
+
+
+--- Cool shortcuts
+github
+	- T, file finder
+	- raw, allows copy/paste
+
+--- Using Helpers
+- you use helpers modules to clean up the views
+
+--- dollars and cents
+- the initial set up of integer vs floats is done in schema.rb
+- initial set up is as integer (price as cents). But need float to display dollars.
+- after converting to float, need to revert back to integer b/c that is how data is stored.  

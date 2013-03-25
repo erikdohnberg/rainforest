@@ -31,21 +31,29 @@ class ProductTest < ActiveSupport::TestCase
   	refute @p.valid?
   end
 
-  test "dollars have two decimals as float" do
-    @p.price_in_dollars = 10
+  test "must have price_in_dollars" do
+    @p.price_in_cents = nil
+    @p.price_in_dollars = nil
     refute @p.valid?
   end
 
+  test "must refute invalid price_in_dollars" do
+    @p.price_in_cents = nil
+    @p.price_in_dollars = "abc"
+    assert_equal nil, @p.price_in_dollars
+    refute @p.valid?
+  end
+
+  test "must handle many decimal places price_in_dollars" do
+    @p.price_in_cents = nil
+    @p.price_in_dollars = [12.09123]
+    assert_equal 12.09, @p.price_in_dollars
+    assert_equal 1209, @p.price_in_cents
+    assert @p.valid?
+  end
+
   test "cents to dollars as float" do
-    @p.price_in_dollars 
+    @p.price_in_dollars = 10.15
+    assert_equal 1015, @p.price_in_cents
   end
-
-  test "price in dollars to cents as integer" do
-  end
-
-  # Shows that in products.rb you can call a class within a custom symbol because rails is so smart!
-  # test "This is a cheap book" do
-  # 	@p2 = FactoryGirl.create(:cheap_product)
-  # end
-
 end

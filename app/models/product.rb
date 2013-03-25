@@ -7,7 +7,8 @@ class Product < ActiveRecord::Base
 
   def price_in_dollars  #getter
   	if self.price_in_cents?
-  		sprintf("%.2f",(self.price_in_cents.to_f / 100))
+      self.price_in_cents.to_f / 100
+  		# sprintf("%.2f",(self.price_in_cents.to_f / 100))
   	end
   	# 187.price_in_dollars => 1.87
   	# Below is now completed by "number_to_currency" application method
