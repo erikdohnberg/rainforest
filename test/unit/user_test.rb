@@ -18,11 +18,12 @@ class UserTest < ActiveSupport::TestCase
     assert true
 	end
 
-	# test "cannot change the password_digest" do
- # 		user = FactoryGirl.create(:user) 
+	test "cannot change the password_digest" do
+ 		user = FactoryGirl.create(:user) 
 	# 	assert_raises(ActiveModel:MassAssignmentSecurity::Error)
 	# 	 {user.update_attributes):password_digest => "blahblahblah"}
-	# end
+		assert_raises(ActiveModel::MassAssignmentSecurity::Error) {user.update_attributes(:password_digest => "sdfghjkhgfdb")}
+	end
 
 	test "cannot have two users with the same email address" do
 	user = FactoryGirl.create(:user, :email => "bugs@gmail.com")
@@ -30,10 +31,13 @@ class UserTest < ActiveSupport::TestCase
 	refute second_user.save
 
 	assert_equal ["has already been taken"], second_user.errors[:email]
-
 	end
 
-
+	test "must have a password and confirmation on create"
+		user = FactoryGirl.create(:user)
+		user.password = ""
+		refute user.valid?
+	end
 
 end
 
