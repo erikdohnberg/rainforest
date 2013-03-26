@@ -1,4 +1,4 @@
-****class ReviewsController < ApplicationController
+class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
@@ -13,7 +13,8 @@
   # GET /reviews/1
   # GET /reviews/1.json
   def show
-    @review = Review.find(params[:id])
+    @product = Product.find(params[:product_id])
+    @review = Review.find(params[:review_id])
 
     respond_to do |format|
       format.html # show.html.erb

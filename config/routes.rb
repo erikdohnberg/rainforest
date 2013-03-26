@@ -1,7 +1,7 @@
 Rainforest::Application.routes.draw do
-  resources :reviews
-
-  resources :products
+  resources :products do
+    resources :reviews
+  end
   resources :users
   resources :sessions, :only => [:new, :create, :destroy]
 
