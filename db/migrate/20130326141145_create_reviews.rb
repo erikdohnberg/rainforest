@@ -1,8 +1,8 @@
 class CreateReviews < ActiveRecord::Migration
   def change
     create_table :reviews do |t|
-      t.references :user
-      t.references :product
+      t.references :user # -> user_id
+      t.references :product # -> product_id
       t.text :comment
 
       t.timestamps

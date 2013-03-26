@@ -26,19 +26,18 @@ class UserTest < ActiveSupport::TestCase
 	end
 
 	test "cannot have two users with the same email address" do
-	user = FactoryGirl.create(:user, :email => "bugs@gmail.com")
-	second_user = FactoryGirl.build(:user, :email => "bugs@gmail.com")
-	refute second_user.save
+		user = FactoryGirl.create(:user, :email => "bugs@gmail.com")
+		second_user = FactoryGirl.build(:user, :email => "bugs@gmail.com")
+		refute second_user.save
 
-	assert_equal ["has already been taken"], second_user.errors[:email]
+		assert_equal ["has already been taken"], second_user.errors[:email]
 	end
 
-	test "must have a password and confirmation on create"
+	test "must have a password and confirmation on create" do
 		user = FactoryGirl.create(:user)
 		user.password = ""
 		refute user.valid?
 	end
-
 end
 
 
