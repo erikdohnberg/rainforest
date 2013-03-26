@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+  before_filter :load_product
 
   def index
     @reviews = Review.all
@@ -9,23 +10,24 @@ class ReviewsController < ApplicationController
 
   end
 
+  # POST /product/:id/reviews
   def create
     @review = Review.new(params[:review])
 
     if @review.save
-      redirect_to @review, notice: 'Review was successfully created.'
+      redirect_to @product, notice: 'Review was successfully created.'
     else
-      render action: "new"
+      render action: "../product/show"
     end
   end
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
+    redirect_to reviews_url
+  end
 
-    respond_to do |format|
-      format.html { redirect_to reviews_url }
-      format.json { head :no_content }
-    end
+  def load_product
+    @product = Product.find(params[:product_id])
   end
 end
