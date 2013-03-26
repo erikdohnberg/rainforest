@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+
 <p>
   <b>Name:</b>
   <%= @product.name %>
@@ -18,14 +19,4 @@
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
 
-<h3>Reviews</h3>
-
-<p>Reviews for <%= @product.name %></p>
-
-<% @product.reviews.each do |review| %>
-		<p>
-		<%= review.comment %>
-		<br>
-		<em> by <%= review.user.name %></em>
-		</p>
-<% end %>
+<%= render "reviews" %>

@@ -1,4 +1,4 @@
-class ReviewsController < ApplicationController
+****class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
