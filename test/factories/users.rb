@@ -8,4 +8,3 @@ FactoryGirl.define do
     password_confirmation "test"
   end
 end
-b
